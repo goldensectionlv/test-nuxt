@@ -1,10 +1,5 @@
 <template>
-  <div class="container">
-    1234
-    updated from basic_template
-    second update from testFeature
-    test from Feature3
-  </div>
+  <div class="container" />
 </template>
 
 <script>
