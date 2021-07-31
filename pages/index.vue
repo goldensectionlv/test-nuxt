@@ -1,5 +1,7 @@
 <template>
-  <div class="container" />
+  <div class="container">
+    testFeature
+  </div>
 </template>
 
 <script>
