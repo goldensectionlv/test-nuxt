@@ -3,6 +3,7 @@
     1234
     updated from basic_template
     second update from testFeature
+    test from Feature3
   </div>
 </template>
 
