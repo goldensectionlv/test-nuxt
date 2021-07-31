@@ -2,6 +2,7 @@
   <div class="container">
     1234
     updated from basic_template
+    second update from testFeature
   </div>
 </template>
 
