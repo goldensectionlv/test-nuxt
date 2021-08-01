@@ -10,7 +10,7 @@
         Добавление товара
       </AppText>
 
-      <FilterMenu />
+      <FilterMenu border="none" />
     </header>
 
     <div
@@ -25,7 +25,7 @@
           v-for="card in 10"
           :key="card"
           :product="{
-            imgLink: 'https://i.pinimg.com/736x/1f/32/de/1f32de75ae0a1ac218a902f6f361a6d7.jpg',
+            imgLink: 'https://ixbt.online/gametech/covers/2021/06/16/RPtrqWyD1IaVM7JYcdQtGZQTJTerDpEe7xxOPoxj.jpg',
             title: 'Наименование товара',
             description: 'Довольно-таки интересное описание товара в несколько строк. ' +
               'Довольно-таки интересное описание товара в несколько строк',
@@ -69,12 +69,11 @@ export default {
 
   &__products {
     width: 100%;
-    //border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 4px;
     padding-bottom: 120px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 32%);
-    row-gap: 2.1%;
+    row-gap: 1.1%;
     justify-content: space-between;
   }
 }
@@ -83,7 +82,7 @@ export default {
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 49%);
-      row-gap: 0.8%;
+      row-gap: 0.6%;
     }
   }
 }
@@ -92,7 +91,7 @@ export default {
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 32%);
-      row-gap: 2.1%;
+      row-gap: 0.7%;
     }
     &__form {
       display: none;
@@ -103,8 +102,8 @@ export default {
 @media (max-width: 750px) {
   .main {
     &__products {
-      grid-template-columns: repeat(auto-fill, 49%);
-      row-gap: 0.8%;
+      grid-template-columns: repeat(auto-fill, 48%);
+      row-gap: .9%;
     }
   }
 }
