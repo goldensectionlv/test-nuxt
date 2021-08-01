@@ -12,7 +12,6 @@
     <AppText
       class="filter__text-hover"
       filter-text
-      inline
     >
       По умолчанию
     </AppText>

@@ -111,7 +111,7 @@ export default {
   .heading {
     &__text {
       font-size: 21px;
-      margin-right: 10px;
+      max-width: 50%;
     }
   }
 
