@@ -1,9 +1,13 @@
 <template>
   <div
-    class="inline"
     :class="{
       'headerText': headerText,
-      'filterText': filterText
+      'filterText': filterText,
+      'cartTitle': cartTitle,
+      'regularText': regularText
+    }"
+    :style="{
+      display: inline ? 'inline' : 'block'
     }"
   >
     <slot />
@@ -18,6 +22,18 @@ export default {
       default: false
     },
     filterText: {
+      type: Boolean,
+      default: false
+    },
+    cartTitle: {
+      type: Boolean,
+      default: false
+    },
+    regularText: {
+      type: Boolean,
+      default: false
+    },
+    inline: {
       type: Boolean,
       default: false
     }
@@ -47,6 +63,24 @@ export default {
   font-size: 12px;
   line-height: 15px;
   color: #B4B4B4;
+}
+
+.cartTitle {
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #3F3F3F;
+}
+
+.regularText {
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #3F3F3F;
 }
 
 </style>
