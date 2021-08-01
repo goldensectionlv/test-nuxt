@@ -21,7 +21,16 @@
       <section
         class="main__products"
       >
-        products
+        <productCard
+          v-for="card in 10"
+          :key="card"
+          :product="{
+            imgLink: 'https://i.pinimg.com/736x/1f/32/de/1f32de75ae0a1ac218a902f6f361a6d7.jpg',
+            title: 'Наименование товара',
+            description: 'Довольно-таки интересное описание товара в несколько строк. ' +
+              'Довольно-таки интересное описание товара в несколько строк'
+          }"
+        />
       </section>
     </div>
   </div>
@@ -31,12 +40,14 @@
 import FilterMenu from '@/components/molecules/FilterMenu'
 import AppText from '@/components/atoms/AppText'
 import appForm from '@/components/organizms/appForm'
+import productCard from '@/components/molecules/productCard'
 
 export default {
   components: {
     FilterMenu,
     AppText,
-    appForm
+    appForm,
+    productCard
   }
 }
 
@@ -53,16 +64,38 @@ export default {
 
 .main {
   display: flex;
+  height: auto;
 
   &__products {
     width: 100%;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 4px;
-    min-height: 400px;
+    padding-bottom: 120px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 32%);
+    row-gap: 2.1%;
+    justify-content: space-between;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
+  .main {
+    &__products {
+      grid-template-columns: repeat(auto-fill, 49%);
+      row-gap: 0.8%;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    &__form {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 500px) {
   .heading {
     &__text {
       font-size: 21px;
@@ -71,9 +104,14 @@ export default {
   }
 
   .main {
+    &__products {
+      grid-template-columns: repeat(auto-fill, 99%);
+      row-gap: 0.8%;
+    }
     &__form {
       display: none;
     }
   }
 }
+
 </style>

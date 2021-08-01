@@ -40,4 +40,8 @@ html {
     padding: 21px;
   }
 }
+
+.mt-16 {
+  margin-top: 16px !important;
+}
 </style>

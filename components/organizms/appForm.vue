@@ -14,6 +14,7 @@ export default {
 .form {
   min-width: 332px;
   min-height: 440px;
+  max-height: 440px;
   border: 1px solid rgba(0,0,0,.2);
   margin-right: 16px;
   border-radius: 4px;
