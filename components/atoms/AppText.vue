@@ -4,7 +4,8 @@
       'headerText': headerText,
       'filterText': filterText,
       'cartTitle': cartTitle,
-      'regularText': regularText
+      'regularText': regularText,
+      'priceText': priceText
     }"
     :style="{
       display: inline ? 'inline' : 'block'
@@ -30,6 +31,10 @@ export default {
       default: false
     },
     regularText: {
+      type: Boolean,
+      default: false
+    },
+    priceText: {
       type: Boolean,
       default: false
     },
@@ -80,6 +85,15 @@ export default {
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
+  color: #3F3F3F;
+}
+
+.priceText {
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
   color: #3F3F3F;
 }
 

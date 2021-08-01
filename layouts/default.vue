@@ -44,4 +44,7 @@ html {
 .mt-16 {
   margin-top: 16px !important;
 }
+.mt-32 {
+  margin-top: 32px !important;
+}
 </style>

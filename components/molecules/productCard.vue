@@ -1,5 +1,15 @@
 <template>
-  <div class="card">
+  <div
+    class="card"
+    @mouseenter="buttonActive = true"
+    @mouseleave="buttonActive = false"
+  >
+    <div
+      v-if="buttonActive"
+      class="card__button"
+    >
+      x
+    </div>
     <productPhoto
       :img-link="product.imgLink"
     />
@@ -18,6 +28,13 @@
         class="mt-16"
       >
         {{ product.description }}
+      </AppText>
+
+      <AppText
+        price-text
+        class="mt-32"
+      >
+        {{ product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }} руб.
       </AppText>
     </div>
   </div>
@@ -47,6 +64,11 @@ export default {
         }
       }
     }
+  },
+  data () {
+    return {
+      buttonActive: false
+    }
   }
 
 }
@@ -54,9 +76,26 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  border: 1px solid rgba(0, 0, 0, .3);
+  border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 4px;
   width: 101%;
+  position: relative;
+  cursor: pointer;
+
+  &__button {
+    position: absolute;
+    z-index: 1;
+    width: 32px;
+    height: 32px;
+    background-color: #FF8484;
+    right: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transform: translate(30%, -30%);
+  }
 
   &__description {
     padding: 16px 16px 24px 16px;

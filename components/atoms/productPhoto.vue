@@ -32,6 +32,8 @@ export default {
     position: absolute;
     background-position: center;
     background-size: cover;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
   }
 }
 </style>
