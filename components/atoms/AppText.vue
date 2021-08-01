@@ -5,7 +5,9 @@
       'filterText': filterText,
       'cartTitle': cartTitle,
       'regularText': regularText,
-      'priceText': priceText
+      'priceText': priceText,
+      'formInputTitleText': formInputTitleText,
+      'formInputText': formInputText
     }"
     :style="{
       display: inline ? 'inline' : 'block'
@@ -39,6 +41,14 @@ export default {
       default: false
     },
     inline: {
+      type: Boolean,
+      default: false
+    },
+    formInputTitleText: {
+      type: Boolean,
+      default: false
+    },
+    formInputText: {
       type: Boolean,
       default: false
     }
@@ -97,4 +107,22 @@ export default {
   color: #3F3F3F;
 }
 
+.formInputTitleText {
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: -0.02em;
+  color: #49485E;
+}
+
+.formInputText {
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #B4B4B4;
+}
 </style>

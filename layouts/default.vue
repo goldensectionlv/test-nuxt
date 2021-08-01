@@ -41,10 +41,19 @@ html {
   }
 }
 
+.mt-4 {
+  margin-top: 4px;
+}
+
 .mt-16 {
   margin-top: 16px !important;
+}
+
+.mt-24 {
+  margin-top: 24px;
 }
 .mt-32 {
   margin-top: 32px !important;
 }
+
 </style>

@@ -8,7 +8,11 @@
       v-if="buttonActive"
       class="card__button"
     >
-      x
+      <AppIcon
+        trash-icon
+        color="white"
+        class="mt-4"
+      />
     </div>
     <productPhoto
       :img-link="product.imgLink"
@@ -43,11 +47,13 @@
 <script>
 import AppText from '@/components/atoms/AppText'
 import productPhoto from '@/components/atoms/productPhoto'
+import AppIcon from '@/components/atoms/AppIcon'
 
 export default {
   components: {
     AppText,
-    productPhoto
+    productPhoto,
+    AppIcon
   },
   props: {
     imgLink: {
@@ -76,7 +82,6 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 4px;
   width: 101%;
   position: relative;
