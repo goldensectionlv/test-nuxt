@@ -7,13 +7,15 @@
       'regularText': regularText,
       'priceText': priceText,
       'formInputTitleText': formInputTitleText,
-      'formInputText': formInputText
+      'formInputText': formInputText,
+      'formErrorText': formErrorText
     }"
     :style="{
-      display: inline ? 'inline' : 'block'
+      display: inline ? 'inline' : ''
     }"
   >
     <slot />
+    <div class="dot" />
   </div>
 </template>
 
@@ -51,12 +53,20 @@ export default {
     formInputText: {
       type: Boolean,
       default: false
+    },
+    formErrorText: {
+      type: Boolean,
+      default: false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+div {
+  position: relative;
+}
 
 .inline {
   display: inline;
@@ -125,4 +135,15 @@ export default {
   line-height: 15px;
   color: #B4B4B4;
 }
+
+.formErrorText {
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  line-height: 10px;
+  letter-spacing: -0.02em;
+  color: #FF8484;
+}
+
 </style>
