@@ -7,6 +7,7 @@
     <div
       v-if="buttonActive"
       class="card__button"
+      @click="removeProduct(indexOfProduct)"
     >
       <AppIcon
         trash-icon
@@ -24,7 +25,7 @@
       <AppText
         cart-title
       >
-        {{ product.title }}
+        {{ product.name }} {{ product.id }}
       </AppText>
 
       <AppText
@@ -36,7 +37,7 @@
 
       <AppText
         price-text
-        class="mt-32"
+        style="margin-top: auto; padding-top: 32px"
       >
         {{ product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }} руб.
       </AppText>
@@ -56,6 +57,10 @@ export default {
     AppIcon
   },
   props: {
+    removeProduct: {
+      type: Function,
+      required: true
+    },
     imgLink: {
       type: String,
       default: ''
@@ -69,6 +74,10 @@ export default {
           description: ''
         }
       }
+    },
+    indexOfProduct: {
+      type: Number,
+      required: true
     }
   },
   data () {
@@ -86,6 +95,8 @@ export default {
   width: 101%;
   position: relative;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 
   &__button {
     position: absolute;
@@ -104,6 +115,9 @@ export default {
 
   &__description {
     padding: 16px 16px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
 </style>

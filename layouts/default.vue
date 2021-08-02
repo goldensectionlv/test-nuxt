@@ -40,7 +40,9 @@ html {
     padding: 21px;
   }
 }
-
+.ml-2 {
+  margin-left: 2px;
+}
 .mt-4 {
   margin-top: 4px;
 }

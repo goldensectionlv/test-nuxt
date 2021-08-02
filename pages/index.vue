@@ -22,15 +22,11 @@
         class="main__products"
       >
         <productCard
-          v-for="card in 10"
-          :key="card"
-          :product="{
-            imgLink: 'https://ixbt.online/gametech/covers/2021/06/16/RPtrqWyD1IaVM7JYcdQtGZQTJTerDpEe7xxOPoxj.jpg',
-            title: 'Наименование товара',
-            description: 'Довольно-таки интересное описание товара в несколько строк. ' +
-              'Довольно-таки интересное описание товара в несколько строк',
-            price: 10000
-          }"
+          v-for="(product, indexOfProduct) in products"
+          :key="product.id"
+          :product="product"
+          :remove-product="removeProduct"
+          :index-of-product="indexOfProduct"
         />
       </section>
     </div>
@@ -42,6 +38,7 @@ import FilterMenu from '@/components/molecules/FilterMenu'
 import AppText from '@/components/atoms/AppText'
 import appForm from '@/components/organizms/appForm'
 import productCard from '@/components/molecules/productCard'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -49,7 +46,9 @@ export default {
     AppText,
     appForm,
     productCard
-  }
+  },
+  computed: mapGetters('products', ['products']),
+  methods: mapActions('products', ['removeProduct'])
 }
 
 </script>
@@ -73,7 +72,7 @@ export default {
     padding-bottom: 120px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 32%);
-    row-gap: 1.1%;
+    row-gap: 16px;
     justify-content: space-between;
   }
 }
@@ -82,7 +81,6 @@ export default {
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 49%);
-      row-gap: 0.6%;
     }
   }
 }
@@ -91,7 +89,6 @@ export default {
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 32%);
-      row-gap: 0.7%;
     }
     &__form {
       display: none;
@@ -103,7 +100,6 @@ export default {
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 48%);
-      row-gap: .9%;
     }
   }
 }
@@ -118,7 +114,6 @@ export default {
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 99%);
-      row-gap: 0.8%;
     }
   }
 }
