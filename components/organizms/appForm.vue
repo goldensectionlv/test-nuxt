@@ -104,8 +104,8 @@
     <label for="productPrice" />
     <input
       id="productPrice"
-      v-model.lazy.trim="$v.product.price.$model"
-      v-price
+      v-model="$v.product.price.$model"
+      v-mask="mask"
       :class="{'form__invalid' : $v.product.price.$error}"
       type="text"
       class="form__input"
@@ -134,6 +134,7 @@ import AppButton from '@/components/atoms/AppButton'
 import { mapActions, mapGetters } from 'vuex'
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
 export default {
   components: {
@@ -143,19 +144,26 @@ export default {
   mixins: [validationMixin],
   data () {
     return {
+      mask: createNumberMask({
+        prefix: '',
+        allowDecimal: true,
+        includeThousandsSeparator: true,
+        thousandsSeparatorSymbol: ' ',
+        allowNegative: false
+      }),
       product: {
         name: 'Galaxy Guardians',
         description: 'Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, ' +
           'принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной. ',
         imgLink: 'https://ixbt.online/gametech/covers/2021/06/16/RPtrqWyD1IaVM7JYcdQtGZQTJTerDpEe7xxOPoxj.jpg',
-        price: 100
+        price: 1000
       },
       defaultObject: {
         name: 'Auto Text',
         description: 'Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, ' +
           'принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной. ',
         imgLink: 'https://ixbt.online/gametech/covers/2021/06/16/RPtrqWyD1IaVM7JYcdQtGZQTJTerDpEe7xxOPoxj.jpg',
-        price: 100
+        price: 1000
       }
     }
   },

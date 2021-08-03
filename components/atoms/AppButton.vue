@@ -29,6 +29,7 @@ export default {
   border: none;
   cursor: pointer;
   border-radius: 10px;
+  user-select: none;
 }
 .button-inactive {
   background: #EEEEEE;

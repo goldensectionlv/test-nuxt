@@ -25,7 +25,7 @@
       <AppText
         cart-title
       >
-        {{ product.name }} {{ product.id }}
+        {{ product.name }} id: {{ product.id }}
       </AppText>
 
       <AppText
@@ -39,7 +39,7 @@
         price-text
         style="margin-top: auto; padding-top: 32px"
       >
-        {{ product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }} руб.
+        {{ product.price }} руб.
       </AppText>
     </div>
   </div>
