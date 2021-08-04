@@ -180,6 +180,7 @@ export default {
 
     formSubmit () {
       if (!this.$v.product.$error) {
+        this.product.price = Number(this.product.price.split(' ').join(''))
         this.addProduct(this.product)
         this.product = { ...this.defaultObject }
         this.$nextTick(() => { this.$v.$reset() })
