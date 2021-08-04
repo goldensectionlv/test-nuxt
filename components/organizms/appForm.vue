@@ -120,7 +120,7 @@
     </AppText>
 
     <AppButton
-      class="mt-24"
+      class="mt-24 zoom"
       :disabled="$v.product.$invalid"
     >
       Добавить товар
@@ -174,15 +174,21 @@ export default {
       price: { required }
     }
   },
-  computed: mapGetters('products', ['products']),
+  computed: {
+    ...mapGetters('products', ['products']),
+    ...mapGetters('filters', ['activeFilter'])
+  },
   methods: {
     ...mapActions('products', ['addProduct']),
     ...mapActions('localStorage', ['updateLocalStorage']),
+    ...mapActions('filters', ['filterBy']),
 
     formSubmit () {
       if (!this.$v.product.$error) {
+        console.log(this.activeFilter)
         this.product.price = Number(this.product.price.split(' ').join(''))
         this.addProduct(this.product)
+        this.filterBy({ filter: this.activeFilter, filteredArray: this.products, switchDirection: false })
         this.updateLocalStorage({ dataName: 'products', dataToAdd: this.products })
         this.product = { ...this.defaultObject }
         this.$nextTick(() => { this.$v.$reset() })

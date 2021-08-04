@@ -11,7 +11,6 @@
       </AppText>
 
       <FilterMenu
-        :filters-array="filters"
         :filter-function="filterFunction"
         :products="products"
         :active-filter="activeFilter"
@@ -31,15 +30,24 @@
         <span v-else style="margin-bottom: 3px">x</span>
       </div>
 
-      <div
-        v-if="formActive && width < 1023"
-        class="main__formBackdrop"
-        @click="formActive = false"
-      />
-      <appForm
-        v-if="formActive"
-        class="main__form"
-      />
+      <transition
+        name="fade"
+      >
+        <div
+          v-if="formActive && width < 1023"
+          class="main__formBackdrop"
+          @click="formActive = false"
+        />
+      </transition>
+
+      <transition
+        :name="slideClass"
+      >
+        <appForm
+          v-if="formActive"
+          class="main__form"
+        />
+      </transition>
 
       <section
         class="main__products"
@@ -47,6 +55,7 @@
         <productCard
           v-for="(product, indexOfProduct) in products"
           :key="product.id"
+          class="zoom"
           :product="product"
           :index-of-product="indexOfProduct"
           :is-mobile="isMobile"
@@ -74,13 +83,22 @@ export default {
   data () {
     return {
       width: 0,
-      formActive: false
+      formActive: false,
+      slideClass: ''
     }
   },
   computed: {
     ...mapGetters('products', ['products']),
-    ...mapGetters('filters', ['filters', 'activeFilter']),
+    ...mapGetters('filters', ['activeFilter']),
     ...mapGetters('isMobile', ['isMobile'])
+  },
+  watch: {
+    width () {
+      // prevent initial animation on change screen size to small
+      if (this.width < 1023 && this.slideClass !== 'slide') {
+        setTimeout(() => { this.slideClass = 'slide' }, 300)
+      } else if (this.slideClass !== '') this.slideClass = ''
+    }
   },
   created () {
     this.getDataFromLocalStorage('products')
@@ -173,7 +191,7 @@ export default {
 @media (max-width: 1023px) {
   .main {
     &__products {
-      grid-template-columns: repeat(auto-fill, 32%);
+      grid-template-columns: repeat(auto-fill, 31.5%);
     }
     &__form {
       position: fixed;
@@ -209,4 +227,25 @@ export default {
   }
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: 300ms;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-leave-active,
+.slide-enter-active {
+  transition: 300ms;
+}
+.slide-enter {
+  transform: translate(100%, 0);
+  opacity: 1;
+}
+.slide-leave-to {
+  transform: translate(100%, 0);
+  opacity: 1;
+}
 </style>
