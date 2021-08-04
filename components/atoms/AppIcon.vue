@@ -31,6 +31,21 @@
     >
       <path d="M7.48532 3.24264L4.24268 6.48528L1.00003 3.24264" :stroke="color" />
     </svg>
+
+    <svg
+      v-if="upIcon"
+      xmlns="http://www.w3.org/2000/svg"
+      :width="width"
+      :height="height"
+      viewBox="0 0 24 24"
+    ><path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" :fill="color" /></svg>
+    <svg
+      v-if="downIcon"
+      xmlns="http://www.w3.org/2000/svg"
+      :width="width"
+      :height="height"
+      viewBox="0 0 24 24"
+    ><path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" :fill="color" /></svg>
   </div>
 </template>
 
@@ -54,6 +69,14 @@ export default {
       default: false
     },
     expandIcon: {
+      type: Boolean,
+      default: false
+    },
+    upIcon: {
+      type: Boolean,
+      default: false
+    },
+    downIcon: {
       type: Boolean,
       default: false
     }

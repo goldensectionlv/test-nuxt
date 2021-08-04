@@ -5,7 +5,7 @@
     @mouseleave="buttonActive = false"
   >
     <div
-      v-if="buttonActive"
+      v-if="buttonActive || isMobile"
       class="card__button"
       @click="removeProduct(indexOfProduct)"
     >
@@ -39,7 +39,7 @@
         price-text
         style="margin-top: auto; padding-top: 32px"
       >
-        {{ product.price }} руб.
+        {{ product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }} руб.
       </AppText>
     </div>
   </div>
@@ -78,6 +78,10 @@ export default {
     indexOfProduct: {
       type: Number,
       required: true
+    },
+    isMobile: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

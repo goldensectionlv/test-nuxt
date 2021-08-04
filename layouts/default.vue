@@ -43,8 +43,16 @@ html {
 .ml-2 {
   margin-left: 2px;
 }
+
+.ml-4 {
+  margin-left: 4px;
+}
 .mt-4 {
   margin-top: 4px;
+}
+
+.mt-6 {
+  margin-top: 8px;
 }
 
 .mt-16 {
