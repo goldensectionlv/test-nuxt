@@ -4,14 +4,14 @@
     @mouseleave="filterModal = false"
   >
     <div
-      class="filter"
+      class="filter zoom"
       @click="filterModal = !filterModal"
     >
       <AppText
         class="filter__text-hover"
         filter-text
       >
-        {{ activeFilter }}
+        {{ activeFilter.byWhat }}
       </AppText>
 
       <AppIcon
@@ -33,10 +33,10 @@
         class="filter__modal"
       >
         <AppText
-          v-for="(filter, index) in filtersArray"
+          v-for="(filter, index) in filters"
           :key="filter.byWhat"
-          class="hover"
-          :class="{'mt-6': index !== 0, 'active': filter.byWhat === activeFilter}"
+          class="hover zoom"
+          :class="{'mt-6': index !== 0, 'active': filter.byWhat === activeFilter.byWhat}"
           filter-text
 
           style="display: flex; align-items: center; white-space: nowrap"
@@ -45,20 +45,20 @@
           {{ filter.byWhat }}
 
           <AppIcon
-            v-show="!filter.min && filter.byWhat === activeFilter"
+            v-show="!filter.min && filter.byWhat === activeFilter.byWhat"
             class="ml-4"
             height="8px"
             width="8px"
             up-icon
-            :color="filter.byWhat === activeFilter ? '' : '#B4B4B4'"
+            :color="filter.byWhat === activeFilter.byWhat ? '' : '#B4B4B4'"
           />
           <AppIcon
-            v-show="filter.min && filter.byWhat === activeFilter"
+            v-show="filter.min && filter.byWhat === activeFilter.byWhat"
             class="ml-4"
             height="8px"
             width="8px"
             down-icon
-            :color="filter.byWhat === activeFilter ? '' : '#B4B4B4'"
+            :color="filter.byWhat === activeFilter.byWhat ? '' : '#B4B4B4'"
           />
         </AppText>
       </div>
@@ -69,6 +69,7 @@
 <script>
 import AppText from '@/components/atoms/AppText'
 import AppIcon from '@/components/atoms/AppIcon'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -76,23 +77,6 @@ export default {
     AppIcon
   },
   props: {
-    filtersArray: {
-      type: Array,
-      default () {
-        return [{
-          byWhat: 'По умолчанию',
-          min: false
-        }]
-      }
-    },
-    filterFunction: {
-      type: Function,
-      default: () => {}
-    },
-    activeFilter: {
-      type: String,
-      default: 'По умолчанию'
-    },
     isMobile: {
       type: Boolean,
       default: false
@@ -100,16 +84,27 @@ export default {
     products: {
       type: Array,
       default () { return [] }
+    },
+    activeFilter: {
+      type: Object,
+      default () { return { byWhat: 'По умолчанию' } }
     }
   },
   data () {
     return {
-      filterModal: false
+      filterModal: false,
+      filters: [
+        { byWhat: 'По умолчанию', key: 'id', min: false },
+        { byWhat: 'По цене', key: 'price', min: false },
+        { byWhat: 'По названию', key: 'name', min: false }
+      ]
     }
   },
   methods: {
+    ...mapActions('filters', ['filterBy']),
+
     onClick (filter, products) {
-      this.filterFunction({ filter, products })
+      this.filterBy({ filter, filteredArray: products, switchDirection: true })
       if (this.isMobile) {
         this.filterModal = false
       }

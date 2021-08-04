@@ -4,17 +4,19 @@
     @mouseenter="buttonActive = true"
     @mouseleave="buttonActive = false"
   >
-    <div
-      v-if="buttonActive || isMobile"
-      class="card__button"
-      @click="onClick"
-    >
-      <AppIcon
-        trash-icon
-        color="white"
-        class="mt-4"
-      />
-    </div>
+    <transition name="bounce">
+      <div
+        v-if="buttonActive || isMobile"
+        class="card__button"
+        @click="onClick"
+      >
+        <AppIcon
+          trash-icon
+          color="white"
+          class="mt-4"
+        />
+      </div>
+    </transition>
     <productPhoto
       :img-link="product.imgLink"
     />
@@ -105,7 +107,7 @@ export default {
 
   &__button {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     width: 32px;
     height: 32px;
     background-color: #FF8484;
@@ -123,6 +125,21 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+  }
+}
+
+.bounce-enter-active {
+  animation: bounce-in .3s;
+}
+
+@keyframes bounce-in {
+
+  50% {
+
+    transform: translate(30%, -30%) scale(1.3);
+  }
+  100% {
+    transform: translate(30%, -30%) scale(1);
   }
 }
 </style>

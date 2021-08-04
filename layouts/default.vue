@@ -66,4 +66,16 @@ html {
   margin-top: 32px !important;
 }
 
+.zoom {
+  -ms-transform: scale(1.00); /* IE 9 */
+  -webkit-transform: scale(1.00); /* Safari 3-8 */
+  transform: scale(1.00);
+  transition: 200ms ease-out;
+}
+.zoom:hover {
+  -ms-transform: scale(1.03); /* IE 9 */
+  -webkit-transform: scale(1.03); /* Safari 3-8 */
+  transform: scale(1.03);
+  transition: 200ms ease-out;
+}
 </style>
