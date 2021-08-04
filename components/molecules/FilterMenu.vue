@@ -110,7 +110,6 @@ export default {
   methods: {
     onClick (filter, products) {
       this.filterFunction({ filter, products })
-      console.log(this.isMobile)
       if (this.isMobile) {
         this.filterModal = false
       }

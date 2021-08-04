@@ -48,9 +48,9 @@
           v-for="(product, indexOfProduct) in products"
           :key="product.id"
           :product="product"
-          :remove-product="removeProduct"
           :index-of-product="indexOfProduct"
           :is-mobile="isMobile"
+          @removeCardProduct="removeCardProduct"
         />
       </section>
     </div>
@@ -83,6 +83,7 @@ export default {
     ...mapGetters('isMobile', ['isMobile'])
   },
   created () {
+    this.getDataFromLocalStorage('products')
     this.isMobileCheck()
     this.updateScreenWidth()
     window.addEventListener('resize', this.updateScreenWidth)
@@ -94,10 +95,15 @@ export default {
     ...mapActions('products', ['removeProduct']),
     ...mapActions('filters', ['filterFunction']),
     ...mapActions('isMobile', ['isMobileCheck']),
+    ...mapActions('localStorage', ['getDataFromLocalStorage', 'updateLocalStorage']),
 
     updateScreenWidth () {
       this.width = window.innerWidth
       this.formActive = this.width > 1023
+    },
+    removeCardProduct (indexOfProduct) {
+      this.removeProduct(indexOfProduct)
+      this.updateLocalStorage({ dataName: 'products', dataToAdd: this.products })
     }
   }
 }

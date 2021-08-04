@@ -7,7 +7,7 @@
     <div
       v-if="buttonActive || isMobile"
       class="card__button"
-      @click="removeProduct(indexOfProduct)"
+      @click="onClick"
     >
       <AppIcon
         trash-icon
@@ -57,10 +57,6 @@ export default {
     AppIcon
   },
   props: {
-    removeProduct: {
-      type: Function,
-      required: true
-    },
     imgLink: {
       type: String,
       default: ''
@@ -87,6 +83,11 @@ export default {
   data () {
     return {
       buttonActive: false
+    }
+  },
+  methods: {
+    onClick () {
+      this.$emit('removeCardProduct', this.indexOfProduct)
     }
   }
 
