@@ -144,6 +144,7 @@ export default {
   mixins: [validationMixin],
   data () {
     return {
+      alphabet: 'abcdefghijklmnopqrstuvwxyz', /* для рандома */
       mask: createNumberMask({
         prefix: '',
         allowDecimal: true,
@@ -187,11 +188,17 @@ export default {
     formSubmit () {
       if (!this.$v.product.$error) {
         this.product.price = Number(this.product.price.split(' ').join(''))
+
         this.addProduct(this.product)
         this.filterBy({ filter: this.activeFilter, filteredArray: this.products, switchDirection: false })
         this.updateLocalStorage({ dataName: 'products', dataToAdd: this.products })
         this.activateSnack(this.product.name)
+
         this.product = { ...this.defaultObject }
+
+        this.product.name = this.alphabet[Math.floor(Math.random() * this.alphabet.length)].toUpperCase() + ' Galaxy Guardians'
+        this.product.price = Math.floor(Math.random() * (100000 - 100)) + 100
+
         this.$nextTick(() => { this.$v.$reset() })
       }
     }

@@ -2,8 +2,7 @@
   <transition name="slideSnack">
     <div
       v-if="snackBarText"
-      class="snackContainer"
-      :class="isMobile ? 'snackMobile' : 'snackContainer'"
+      class="snackContainer snackMobile"
     >
       <div class="snackBody">
         <span> {{ prefix }}
