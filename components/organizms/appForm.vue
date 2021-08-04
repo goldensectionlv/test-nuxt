@@ -224,6 +224,7 @@ export default {
   }
 
   &__input {
+    font-family: Source Sans Pro, sans-serif;
     margin-top: 4px;
     border: none;
     border-radius: 4px;

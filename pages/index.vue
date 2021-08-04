@@ -241,11 +241,11 @@ export default {
   transition: 300ms;
 }
 .slide-enter {
-  transform: translate(100%, 0);
+  transform: translate(150%, 0);
   opacity: 1;
 }
 .slide-leave-to {
-  transform: translate(100%, 0);
+  transform: translate(150%, 0);
   opacity: 1;
 }
 </style>

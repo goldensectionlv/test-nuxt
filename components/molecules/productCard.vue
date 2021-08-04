@@ -32,11 +32,10 @@
 
       <AppText
         regular-text
-        class="mt-16"
+        class="mt-16 card__description__text"
       >
         {{ product.description }}
       </AppText>
-
       <AppText
         price-text
         style="margin-top: auto; padding-top: 32px"
@@ -125,6 +124,12 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    &__text {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   }
 }
 
