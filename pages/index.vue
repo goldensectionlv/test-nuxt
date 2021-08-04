@@ -1,5 +1,9 @@
 <template>
   <div>
+    <snackBar
+      prefix="Товар"
+      suffix="добавлен!"
+    />
     <header
       class="heading"
     >
@@ -11,7 +15,6 @@
       </AppText>
 
       <FilterMenu
-        :filter-function="filterFunction"
         :products="products"
         :active-filter="activeFilter"
         :is-mobile="isMobile"
@@ -71,6 +74,7 @@ import FilterMenu from '@/components/molecules/FilterMenu'
 import AppText from '@/components/atoms/AppText'
 import appForm from '@/components/organizms/appForm'
 import productCard from '@/components/molecules/productCard'
+import snackBar from '@/components/molecules/snackBar'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -78,7 +82,8 @@ export default {
     FilterMenu,
     AppText,
     appForm,
-    productCard
+    productCard,
+    snackBar
   },
   data () {
     return {
@@ -111,7 +116,6 @@ export default {
   },
   methods: {
     ...mapActions('products', ['removeProduct']),
-    ...mapActions('filters', ['filterFunction']),
     ...mapActions('isMobile', ['isMobileCheck']),
     ...mapActions('localStorage', ['getDataFromLocalStorage', 'updateLocalStorage']),
 

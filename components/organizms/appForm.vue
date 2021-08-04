@@ -182,14 +182,15 @@ export default {
     ...mapActions('products', ['addProduct']),
     ...mapActions('localStorage', ['updateLocalStorage']),
     ...mapActions('filters', ['filterBy']),
+    ...mapActions('snackBar', ['activateSnack']),
 
     formSubmit () {
       if (!this.$v.product.$error) {
-        console.log(this.activeFilter)
         this.product.price = Number(this.product.price.split(' ').join(''))
         this.addProduct(this.product)
         this.filterBy({ filter: this.activeFilter, filteredArray: this.products, switchDirection: false })
         this.updateLocalStorage({ dataName: 'products', dataToAdd: this.products })
+        this.activateSnack(this.product.name)
         this.product = { ...this.defaultObject }
         this.$nextTick(() => { this.$v.$reset() })
       }
