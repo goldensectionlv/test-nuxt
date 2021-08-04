@@ -177,11 +177,13 @@ export default {
   computed: mapGetters('products', ['products']),
   methods: {
     ...mapActions('products', ['addProduct']),
+    ...mapActions('localStorage', ['updateLocalStorage']),
 
     formSubmit () {
       if (!this.$v.product.$error) {
         this.product.price = Number(this.product.price.split(' ').join(''))
         this.addProduct(this.product)
+        this.updateLocalStorage({ dataName: 'products', dataToAdd: this.products })
         this.product = { ...this.defaultObject }
         this.$nextTick(() => { this.$v.$reset() })
       }

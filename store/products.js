@@ -16,15 +16,11 @@ export const mutations = {
   },
   removeProduct: (state, index) => state.products.splice(index, 1),
 
-  updateByFilter: (state, newArray) => {
-    console.log(newArray)
-    state.products = newArray
-  }
+  updateProductsArray: (state, products) => { state.products = products }
 }
 
 export const actions = {
   addProduct: ({ commit }, product) => commit('addProduct', product),
 
-  removeProduct: ({ commit }, index) => commit('removeProduct', index),
-  updateByFilter: ({ commit }, newArray) => commit('updateByFilter', newArray)
+  removeProduct: ({ commit }, index) => commit('removeProduct', index)
 }
