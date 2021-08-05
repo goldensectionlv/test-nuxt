@@ -95,6 +95,10 @@ export default {
       if (this.width < 1023 && this.slideClass !== 'slide') {
         setTimeout(() => { this.slideClass = 'slide' }, 300)
       } else if (this.slideClass !== '') this.slideClass = ''
+    },
+    formActive () {
+      if (this.formActive && this.width < 1023) document.documentElement.style.overflow = 'hidden'
+      else document.documentElement.style.overflow = 'auto'
     }
   },
   created () {
