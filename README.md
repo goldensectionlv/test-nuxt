@@ -1,4 +1,7 @@
-# test-nuxt in progress
+# test-nuxt app
+
+# demo: https://nuxt-demo-august-2021.herokuapp.com/
+
 
 ## Build Setup
 
