@@ -19,37 +19,40 @@
       />
     </header>
 
-    <div class="main">
-      <AppRoundedBtn
-        :appear-condition="width < 1023"
-        :change-icon-condition="!formActive"
-        @AppRoundedBtnClick="formActive = !formActive"
-      />
-
-      <backDropHover
-        :appear-condition="formActive && width < 1023"
-        @backDropHoverClick="formActive = false"
-      />
-
-      <transition :name="slideClass">
-        <appForm
-          v-if="formActive"
-          class="main__form"
-        />
-      </transition>
-
-      <section class="main__products">
-        <productCard
-          v-for="(product, indexOfProduct) in products"
-          :key="product.id"
+    <transition name="fade">
+      <div v-show="preloadingAnimation" class="main">
+        <AppRoundedBtn
+          :appear-condition="width < 1023"
+          :change-icon-condition="!formActive"
           class="zoom"
-          :product="product"
-          :index-of-product="indexOfProduct"
-          :is-mobile="isMobile"
-          @removeCardProduct="removeCardProduct"
+          @AppRoundedBtnClick="formActive = !formActive"
         />
-      </section>
-    </div>
+
+        <backDropHover
+          :appear-condition="formActive && width < 1023"
+          @backDropHoverClick="formActive = false"
+        />
+
+        <transition :name="slideClass">
+          <appForm
+            v-if="formActive"
+            class="main__form"
+          />
+        </transition>
+
+        <section class="main__products">
+          <productCard
+            v-for="(product, indexOfProduct) in products"
+            :key="product.id"
+            class="zoom"
+            :product="product"
+            :index-of-product="indexOfProduct"
+            :is-mobile="isMobile"
+            @removeCardProduct="removeCardProduct"
+          />
+        </section>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -77,7 +80,8 @@ export default {
     return {
       width: 0,
       formActive: false,
-      slideClass: ''
+      slideClass: '',
+      preloadingAnimation: false
     }
   },
   computed: {
@@ -98,6 +102,9 @@ export default {
     this.isMobileCheck()
     this.updateScreenWidth()
     window.addEventListener('resize', this.updateScreenWidth)
+  },
+  mounted () {
+    this.preloadingAnimation = true
   },
   destroyed () {
     window.removeEventListener('resize', this.updateScreenWidth)
@@ -198,6 +205,14 @@ export default {
       grid-template-columns: repeat(auto-fill, 99%);
     }
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: 1000ms;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .slide-leave-active,
