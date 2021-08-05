@@ -22,9 +22,9 @@
     <transition name="fade">
       <div v-show="preloadingAnimation" class="main">
         <AppRoundedBtn
+          class="zoom"
           :appear-condition="width < 1023"
           :change-icon-condition="!formActive"
-          class="zoom"
           @AppRoundedBtnClick="formActive = !formActive"
         />
 
@@ -40,7 +40,7 @@
           />
         </transition>
 
-        <section class="main__products">
+        <transition-group name="flip-list" class="main__products" tag="section">
           <productCard
             v-for="(product, indexOfProduct) in products"
             :key="product.id"
@@ -50,7 +50,7 @@
             :is-mobile="isMobile"
             @removeCardProduct="removeCardProduct"
           />
-        </section>
+        </transition-group>
       </div>
     </transition>
   </div>
@@ -208,7 +208,7 @@ export default {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: 1000ms;
+  transition: 2000ms;
 }
 .fade-enter,
 .fade-leave-to {
@@ -223,5 +223,9 @@ export default {
 .slide-leave-to{
   transform: translate(150%, 0);
   opacity: 1;
+}
+
+.flip-list-move {
+  transition: transform 600ms;
 }
 </style>

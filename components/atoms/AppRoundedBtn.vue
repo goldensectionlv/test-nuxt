@@ -4,7 +4,7 @@
     class="switcher"
     @click="onClick"
   >
-    <span v-if="!formActive" style="margin-bottom: 3px">+</span>
+    <span v-if="changeIconCondition" style="margin-bottom: 3px">+</span>
     <span v-else style="margin-bottom: 3px">x</span>
   </div>
 </template>

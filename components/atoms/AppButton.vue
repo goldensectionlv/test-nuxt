@@ -21,6 +21,8 @@ export default {
 
 <style lang="scss" scoped>
 .button {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
   height: 36px;
   width: 100%;
   color: white;
