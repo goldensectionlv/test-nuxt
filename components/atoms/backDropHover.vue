@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition name="fadeBackDrop">
     <div
       v-if="appearCondition"
       class="main__formBackdrop"
@@ -25,12 +25,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active,
-.fade-leave-active {
+.fadeBackDrop-enter-active,
+.fadeBackDrop-leave-active {
   transition: 300ms;
 }
-.fade-enter,
-.fade-leave-to {
+.fadeBackDrop-enter,
+.fadeBackDrop-leave-to {
   opacity: 0;
 }
 </style>

@@ -12,7 +12,7 @@
         Добавление товара
       </AppText>
 
-      <FilterMenu
+      <filterMenu
         :products="products"
         :active-filter="activeFilter"
         :is-mobile="isMobile"
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import FilterMenu from '@/components/molecules/FilterMenu'
+import filterMenu from '@/components/molecules/filterMenu'
 import AppText from '@/components/atoms/AppText'
 import appForm from '@/components/organizms/appForm'
 import productCard from '@/components/organizms/productCard'
@@ -68,7 +68,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
-    FilterMenu,
+    filterMenu,
     AppText,
     appForm,
     productCard,
