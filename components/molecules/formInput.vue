@@ -53,6 +53,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   display: flex;
+  margin-bottom: 4px;
   &__dot {
     display: flex;
     right: 0;

@@ -20,7 +20,10 @@
       >
     </formInput>
 
-    <formInput header-text="Описание товара">
+    <formInput
+      header-text="Описание товара"
+      style="margin-top:16px"
+    >
       <label for="productDescription" />
       <textarea
         id="productDescription"
@@ -31,6 +34,7 @@
     </formInput>
 
     <formInput
+      style="margin-top:16px"
       header-text="Ссылка на изображение товара"
       :header-dot-condition="$v.product.imgLink.required"
       :alert-condition="$v.product.imgLink.$dirty && !$v.product.imgLink.required"
@@ -47,6 +51,7 @@
     </formInput>
 
     <formInput
+      style="margin-top:16px"
       header-text="Цена товара"
       :header-dot-condition="$v.product.price.required"
       :alert-condition="$v.product.price.$dirty && !$v.product.price.required"
@@ -154,7 +159,6 @@ export default {
 .form {
   min-width: 332px;
   min-height: 440px;
-  max-height: 440px;
   border: none;
   margin-right: 16px;
   border-radius: 4px;

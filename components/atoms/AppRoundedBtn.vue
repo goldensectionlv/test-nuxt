@@ -4,13 +4,31 @@
     class="switcher"
     @click="onClick"
   >
-    <span v-if="changeIconCondition" style="margin-bottom: 3px">+</span>
-    <span v-else style="margin-bottom: 3px">x</span>
+    <AppIcon
+      v-if="changeIconCondition"
+      width="30px"
+      height="30px"
+      color="white"
+      style="margin-top: 3px;"
+      plus-icon
+    />
+    <AppIcon
+      v-else
+      close-icon
+      width="30px"
+      height="30px"
+      color="white"
+      style="margin-top: 3px;"
+    />
   </div>
 </template>
 
 <script>
+import AppIcon from '@/components/atoms/AppIcon'
 export default {
+  components: {
+    AppIcon
+  },
   props: {
     appearCondition: {
       type: Boolean,
@@ -43,7 +61,6 @@ export default {
   border-radius: 50%;
   color: white;
   background-color: red;
-  font-size: 30px;
   box-shadow: 0 0 60px 3px rgba(34, 60, 80, 0.5);
   cursor: pointer;
   user-select: none;
