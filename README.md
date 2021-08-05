@@ -2,6 +2,8 @@
 
 # demo: https://nuxt-demo-august-2021.herokuapp.com/
 
+# Created according to this task https://frontend-test.idaproject.com/ 
+
 
 ## Build Setup
 
