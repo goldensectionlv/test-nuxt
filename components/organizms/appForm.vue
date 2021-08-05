@@ -4,120 +4,64 @@
     action=""
     @submit.prevent="formSubmit"
   >
-    <!--product name-->
-    <div
-      class="form__header"
+    <formInput
+      header-text="Наименование товара"
+      :header-dot-condition="$v.product.name.required"
+      :alert-condition="$v.product.name.$dirty && !$v.product.name.required"
     >
-      <AppText
-        form-input-title-text
+      <label for="productName" />
+      <input
+        id="productName"
+        v-model.trim="$v.product.name.$model"
+        type="text"
+        class="form__input"
+        :class="{'form__invalid' : $v.product.name.$error}"
+        placeholder="Введите наименование товара"
       >
-        Наименование товара
-      </AppText>
-      <div
-        class="form__header__dot ml-2"
-        :class="{'form__header__dot__success': $v.product.name.required}"
-      />
-    </div>
-    <label for="productName" />
-    <input
-      id="productName"
-      v-model.trim="$v.product.name.$model"
-      type="text"
-      class="form__input"
-      :class="{'form__invalid' : $v.product.name.$error}"
-      placeholder="Введите наименование товара"
-    >
-    <AppText
-      v-if="$v.product.name.$dirty && !$v.product.name.required"
-      class="mt-4"
-      form-error-text
-    >
-      Обязательное поле
-    </AppText>
+    </formInput>
 
-    <!--product description-->
-    <div
-      class="form__header mt-16"
-    >
-      <AppText
-        form-input-title-text
-      >
-        Описание товара
-      </AppText>
-      <div
-        class="form__header__dot ml-2 form__header__dot__success"
+    <formInput header-text="Описание товара">
+      <label for="productDescription" />
+      <textarea
+        id="productDescription"
+        v-model.trim="product.description"
+        class="form__input form__textarea"
+        placeholder="Введите описание товара"
       />
-    </div>
-    <label for="productDescription" />
-    <textarea
-      id="productDescription"
-      v-model.trim="product.description"
-      class="form__textarea"
-      placeholder="Введите описание товара"
-    />
+    </formInput>
 
-    <!--product linkImg-->
-    <div
-      class="form__header mt-16"
+    <formInput
+      header-text="Ссылка на изображение товара"
+      :header-dot-condition="$v.product.imgLink.required"
+      :alert-condition="$v.product.imgLink.$dirty && !$v.product.imgLink.required"
     >
-      <AppText
-        form-input-title-text
+      <label for="imgLink" />
+      <input
+        id="imgLink"
+        v-model.trim="$v.product.imgLink.$model"
+        :class="{'form__invalid' : $v.product.imgLink.$error}"
+        type="text"
+        class="form__input"
+        placeholder="Введите ссылку"
       >
-        Ссылка на изображение товара
-      </AppText>
-      <div
-        class="form__header__dot ml-2"
-        :class="{'form__header__dot__success': $v.product.imgLink.required}"
-      />
-    </div>
-    <label for="imgLink" />
-    <input
-      id="imgLink"
-      v-model.trim="$v.product.imgLink.$model"
-      :class="{'form__invalid' : $v.product.imgLink.$error}"
-      type="text"
-      class="form__input"
-      placeholder="Введите ссылку"
-    >
-    <AppText
-      v-if="$v.product.imgLink.$dirty && !$v.product.imgLink.required"
-      class="mt-4"
-      form-error-text
-    >
-      Обязательное поле
-    </AppText>
+    </formInput>
 
-    <!--product price-->
-    <div
-      class="form__header mt-16"
+    <formInput
+      header-text="Цена товара"
+      :header-dot-condition="$v.product.price.required"
+      :alert-condition="$v.product.price.$dirty && !$v.product.price.required"
     >
-      <AppText
-        form-input-title-text
+      <label for="productPrice" />
+      <input
+        id="productPrice"
+        v-model="$v.product.price.$model"
+        v-mask="mask"
+        :class="{'form__invalid' : $v.product.price.$error}"
+        type="text"
+        class="form__input"
+        placeholder="Введите цену"
       >
-        Цена товара
-      </AppText>
-      <div
-        class="form__header__dot ml-2"
-        :class="{'form__header__dot__success': $v.product.price.required}"
-      />
-    </div>
-    <label for="productPrice" />
-    <input
-      id="productPrice"
-      v-model="$v.product.price.$model"
-      v-mask="mask"
-      :class="{'form__invalid' : $v.product.price.$error}"
-      type="text"
-      class="form__input"
-      placeholder="Введите цену"
-    >
-    <AppText
-      v-if="$v.product.price.$dirty && !$v.product.price.required"
-      class="mt-4"
-      form-error-text
-    >
-      Обязательное поле
-    </AppText>
+    </formInput>
 
     <AppButton
       class="mt-24 zoom"
@@ -129,22 +73,22 @@
 </template>
 
 <script>
-import AppText from '@/components/atoms/AppText'
 import AppButton from '@/components/atoms/AppButton'
 import { mapActions, mapGetters } from 'vuex'
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+import formInput from '@/components/molecules/formInput'
 
 export default {
   components: {
-    AppText,
-    AppButton
+    AppButton,
+    formInput
   },
   mixins: [validationMixin],
   data () {
     return {
-      alphabet: 'abcdefghijklmnopqrstuvwxyz', /* для рандома */
+      alphabet: 'abcdefghijklmnopqrstuvwxyz', /* для генерации рандомного названия */
       mask: createNumberMask({
         prefix: '',
         allowDecimal: true,
@@ -196,7 +140,7 @@ export default {
 
         this.product = { ...this.defaultObject }
 
-        this.product.name = this.alphabet[Math.floor(Math.random() * this.alphabet.length)].toUpperCase() + ' Galaxy Guardians'
+        this.product.name = this.alphabet[Math.floor(Math.random() * this.alphabet.length)].toUpperCase() + ' Auto Text'
         this.product.price = Math.floor(Math.random() * (100000 - 100)) + 100
 
         this.$nextTick(() => { this.$v.$reset() })
@@ -215,21 +159,6 @@ export default {
   margin-right: 16px;
   border-radius: 4px;
   padding: 24px;
-
-  &__header {
-    display: flex;
-
-    &__dot {
-      right: 0;
-      width: 4px;
-      height: 4px;
-      background-color: #FF8484;
-      border-radius: 50%;
-      &__success {
-        background-color: greenyellow;
-      }
-    }
-  }
 
   &__input {
     font-family: Source Sans Pro, sans-serif;
@@ -252,24 +181,8 @@ export default {
   }
 
   &__textarea {
-    font-family: Source Sans Pro, sans-serif;
-    margin-top: 4px;
-    border: none;
-    border-radius: 4px;
-    width: 100%;
-    outline: none;
-    padding: 10px 16px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 15px;
     min-height: 108px;
     resize: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-    ::placeholder {
-      color: #B4B4B4;
-    }
   }
 
   &__invalid {

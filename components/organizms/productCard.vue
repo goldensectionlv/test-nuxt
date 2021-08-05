@@ -17,16 +17,11 @@
         />
       </div>
     </transition>
-    <productPhoto
-      :img-link="product.imgLink"
-    />
 
-    <div
-      class="card__description"
-    >
-      <AppText
-        cart-title
-      >
+    <productPhoto :img-link="product.imgLink" />
+
+    <div class="card__description">
+      <AppText cart-title>
         {{ product.name }} id: {{ product.id }}
       </AppText>
 

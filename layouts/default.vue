@@ -40,6 +40,9 @@ html {
     padding: 21px;
   }
 }
+.mb-2 {
+  margin-bottom: 2px;
+}
 .ml-2 {
   margin-left: 2px;
 }

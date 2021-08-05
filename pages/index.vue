@@ -4,9 +4,7 @@
       prefix="Товар"
       suffix="добавлен!"
     />
-    <header
-      class="heading"
-    >
+    <header class="heading">
       <AppText
         header-text
         class="heading__text"
@@ -21,40 +19,26 @@
       />
     </header>
 
-    <div
-      class="main"
-    >
-      <div
-        v-if="width < 1023"
-        class="main__formSwitcher"
-        @click="formActive = !formActive"
-      >
-        <span v-if="!formActive" style="margin-bottom: 3px">+</span>
-        <span v-else style="margin-bottom: 3px">x</span>
-      </div>
+    <div class="main">
+      <AppRoundedBtn
+        :appear-condition="width < 1023"
+        :change-icon-condition="!formActive"
+        @AppRoundedBtnClick="formActive = !formActive"
+      />
 
-      <transition
-        name="fade"
-      >
-        <div
-          v-if="formActive && width < 1023"
-          class="main__formBackdrop"
-          @click="formActive = false"
-        />
-      </transition>
+      <backDropHover
+        :appear-condition="formActive && width < 1023"
+        @backDropHoverClick="formActive = false"
+      />
 
-      <transition
-        :name="slideClass"
-      >
+      <transition :name="slideClass">
         <appForm
           v-if="formActive"
           class="main__form"
         />
       </transition>
 
-      <section
-        class="main__products"
-      >
+      <section class="main__products">
         <productCard
           v-for="(product, indexOfProduct) in products"
           :key="product.id"
@@ -73,8 +57,10 @@
 import FilterMenu from '@/components/molecules/FilterMenu'
 import AppText from '@/components/atoms/AppText'
 import appForm from '@/components/organizms/appForm'
-import productCard from '@/components/molecules/productCard'
+import productCard from '@/components/organizms/productCard'
 import snackBar from '@/components/molecules/snackBar'
+import AppRoundedBtn from '@/components/atoms/AppRoundedBtn'
+import backDropHover from '@/components/atoms/backDropHover'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -83,7 +69,9 @@ export default {
     AppText,
     appForm,
     productCard,
-    snackBar
+    snackBar,
+    AppRoundedBtn,
+    backDropHover
   },
   data () {
     return {
@@ -146,24 +134,6 @@ export default {
   height: auto;
   position: relative;
 
-  &__formSwitcher {
-    position: fixed;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 30px;
-    right: 6vw;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    color: white;
-    background-color: red;
-    font-size: 30px;
-    box-shadow: 0 0 60px 3px rgba(34, 60, 80, 0.5);
-    cursor: pointer;
-    user-select: none;
-  }
   &__formBackdrop {
     position: fixed;
     width: 100vw;
@@ -223,7 +193,6 @@ export default {
       max-width: 50%;
     }
   }
-
   .main {
     &__products {
       grid-template-columns: repeat(auto-fill, 99%);
@@ -231,24 +200,12 @@ export default {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: 300ms;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 .slide-leave-active,
 .slide-enter-active {
   transition: 300ms;
 }
-.slide-enter {
-  transform: translate(150%, 0);
-  opacity: 1;
-}
-.slide-leave-to {
+.slide-enter,
+.slide-leave-to{
   transform: translate(150%, 0);
   opacity: 1;
 }
