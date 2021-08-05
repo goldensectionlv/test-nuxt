@@ -4,7 +4,7 @@
 
 # Created according to this task https://frontend-test.idaproject.com/ 
 
-
+![screen](https://github.com/goldensectionlv/test-nuxt/raw/release1/screenshot.png)
 ## Build Setup
 
 ```bash
